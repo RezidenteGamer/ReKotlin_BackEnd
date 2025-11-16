@@ -30,9 +30,6 @@
  * - TurmaRequestDTO: Recebe dados do front-end (POST/PUT)
  * - TurmaResponseDTO: Envia dados ao front-end (GET)
  *
- * @author [Seu Nome]
- * @version 1.0.0
- * @since 2025-01-15
  */
 
 package com.reKotlin.portalAcademico.dto

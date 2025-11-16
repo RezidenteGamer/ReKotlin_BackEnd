@@ -3,7 +3,6 @@ package com.reKotlin.portalAcademico.modelo
 import jakarta.persistence.DiscriminatorValue
 import jakarta.persistence.Entity
 import jakarta.persistence.ManyToMany
-// Certifique-se de que os imports para Turma e Usuario estão corretos
 import com.reKotlin.portalAcademico.modelo.Turma
 import com.reKotlin.portalAcademico.modelo.Usuario
 

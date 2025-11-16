@@ -6,8 +6,8 @@
  * Classe abstrata que representa o conceito genérico de "usuário" no sistema.
  *
  * REQUISITO IMPLEMENTADO:
- * ✅ Usar elementos de HERANÇA
- * ✅ Usar elementos de POLIMORFISMO
+ * Usar elementos de HERANÇA
+ * Usar elementos de POLIMORFISMO
  *
  * PADRÃO DE DESIGN: Herança de Tabela Única (Single Table Inheritance)
  *
@@ -34,16 +34,13 @@
  *
  * Estrutura no banco:
  *
- * usuario                  professor               academico
- * ├─ id (PK)              ├─ id (PK, FK)         ├─ id (PK, FK)
- * ├─ tipo_usuario         ├─ departamento        └─ matricula
- * ├─ email
- * ├─ nome
- * └─ senha_plana
+ * usuario              professor           academico
+ * id (PK)              id (PK, FK)         id (PK, FK)
+ * tipo_usuario         departamento        matricula
+ * email
+ * nome
+ * senha_plana
  *
- * @author [Seu Nome]
- * @version 1.0.0
- * @since 2025-01-15
  */
 
 package com.reKotlin.portalAcademico.modelo
@@ -181,35 +178,6 @@ open class Usuario(
      * ------------------------------------------------------------------------
      * CAMPO: senhaPlana (Senha em Texto Plano)
      * ------------------------------------------------------------------------
-     *
-     * ⚠️ ATENÇÃO: PROJETO ACADÊMICO
-     *
-     * Esta implementação armazena senhas em TEXTO PLANO.
-     *
-     * NUNCA FAÇA ISSO EM PRODUÇÃO!
-     *
-     * Em produção, você DEVE:
-     * 1. Usar BCryptPasswordEncoder do Spring Security
-     * 2. Hash da senha antes de salvar
-     * 3. Nunca armazenar senha original
-     *
-     * Exemplo correto:
-     * ```kotlin
-     * val senhaHash: String // "$2a$10$randomHashString..."
-     *
-     * // Ao criar usuário:
-     * val encoder = BCryptPasswordEncoder()
-     * usuario.senhaHash = encoder.encode(senhaPlana)
-     *
-     * // Ao validar login:
-     * encoder.matches(senhaDigitada, usuario.senhaHash) // true/false
-     * ```
-     *
-     * Por que não implementamos aqui?
-     * - Projeto tem foco didático em outras features
-     * - Simplifica para aprendizado inicial
-     * - Mas está DOCUMENTADO que é incorreto
-     *
      * Anotações:
      * @Column(nullable = false)
      * - Senha é obrigatória
@@ -258,7 +226,7 @@ open class Usuario(
  * ESTRATÉGIAS DE HERANÇA JPA (Comparação)
  * ============================================================================
  *
- * 1. JOINED (escolhida aqui) ✅
+ * 1. JOINED (escolhida aqui)
  * Prós:
  * - Normalização perfeita (sem redundância)
  * - Campos específicos em tabelas separadas
@@ -397,24 +365,6 @@ open class Usuario(
  * 6. TOKEN DE SESSÃO:
  *    ✅ var refreshToken: String?
  *    ✅ var tokenExpiration: LocalDateTime?
- *
- * ============================================================================
- */
-
-/**
- * ============================================================================
- * RESUMO DOS REQUISITOS ATENDIDOS NESTE ARQUIVO
- * ============================================================================
- *
- * ✅ Usar elementos de HERANÇA (Usuario > Professor/Academico)
- * ✅ Usar elementos de POLIMORFISMO (variável Usuario pode ser qualquer tipo)
- * ✅ Mapeamento JPA correto com @Entity
- * ✅ Estratégia de herança JOINED (normalizada)
- * ✅ Discriminator column para identificar tipos
- * ✅ Campos obrigatórios com nullable = false
- * ✅ Email único com unique = true
- * ✅ ID auto-increment com IDENTITY
- * ✅ Código organizado e documentado
  *
  * ============================================================================
  */
